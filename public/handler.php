@@ -367,7 +367,7 @@ function get_feedback(&$responses, &$totalCredit, $sid, $rid, $sec) {
         $responses[$qnum] = array ($hasMulti ? $feedback[0][0] : $feedback[0]);
 
         // if this is a multiple response, add them each in
-        if ($hasMulti) {
+        if ($hasMulti ) {
             foreach ($feedback as $response) {
                 $responses[$qnum][] = array ($response[1], $response[3], $response[4]);
                 if (! empty($response[3])) {
@@ -382,7 +382,13 @@ function get_feedback(&$responses, &$totalCredit, $sid, $rid, $sec) {
             }
 
         // otherwise, add this one in
-        } else {
+        
+        // DM mod
+        // Not sure how $feedback is supposed to have elements 3 and 4, but it often does not. 
+				// Added the condition "isset($feedback[3]) && isset($feedback[4])" to avoid errors
+				// on the next line those two array elements are presumed to exist. 
+        } elseif (  isset($feedback[3]) && isset($feedback[4])) {
+        // End DM mod.	
             $responses[$qnum][] = array ($feedback[1], $feedback[3], $feedback[4]);
             if (! empty($feedback[3])) {
                 $hasFeedback = true;

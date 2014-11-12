@@ -4,7 +4,7 @@
     Released under both BSD license and Lesser GPL library license. 
  	Whenever there is any discrepancy between the two licenses, 
  	the BSD license will take precedence. 
-*******************************************************************************/
+*******************************************************************************
 /**
  * xmlschema is a class that allows the user to quickly and easily
  * build a database on any ADOdb-supported platform using a simple
@@ -167,7 +167,11 @@ class dbObject {
 		
 	}
 	
-	function create() {
+	// DM Mod. Argument &$xmls added as a dummy argument to this create() function in order
+	// to satisfy requirements in php 5.4 related to this statement
+	// "class dbTable extends dbObject".  The create() functions of the two classes must have the same number
+	// of arguments. 
+	function create(&$xmls) {
 		return array();
 	}
 	
